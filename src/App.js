@@ -58,8 +58,8 @@ function App() {
 
   return (
     <div className="App">
-      
-      <TextField
+      <div className = "input-text">
+        <TextField
         sx={{
           width: { sm: 200, md: 300 },
           "& .MuiInputBase-root": {
@@ -74,12 +74,29 @@ function App() {
         onChange={(event) => setText(event.target.value)}
         placeholder="Text"
       />
-<div>
-          <Button variant="contained" onClick = {ButtonSubmit}>
-            {loading ? "loading...": "Summarize"}
-          </Button>
-          
-        </div>
+      </div>
+      <div className = "summarize-button">
+        <Button variant="contained" onClick = {ButtonSubmit}>
+          {loading ? "loading...": "Summarize"}
+        </Button>
+      </div>
+      <div className = "summarized-text">
+        <TextField
+        sx={{
+          width: { sm: 200, md: 300 },
+          "& .MuiInputBase-root": {
+            height: 100
+          }
+        }}
+        id="text-input"
+        name="name"
+        label="Enter the text you want to summarize"
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+        placeholder="Text"
+      />
+      </div>
         <div className = "summarized_text">
           <label>Summarized Text</label>
           <textarea
