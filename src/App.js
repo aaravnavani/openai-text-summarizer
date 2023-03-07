@@ -80,7 +80,7 @@ function App() {
           {loading ? "loading...": "Summarize"}
         </Button>
       </div>
-      <div className = "summarized-text">
+      <div className = "summarizedext">
         <TextField
         sx={{
           width: { sm: 200, md: 300 },
@@ -95,21 +95,9 @@ function App() {
         value={text}
         onChange={(event) => setText(event.target.value)}
         placeholder="Text"
-      />
+        />
       </div>
-        <div className = "summarized_text">
-          <label>Summarized Text</label>
-          <textarea
-            placeholder="Summarized Text"
-            cols={80}
-            rows={14}
-            value={summarizedText}
-            onChange={(e) => setText(e.target.value)}
-          />
-        </div>
-      </div>
-    
-    
+    </div>    
   );
 }
 
