@@ -1,9 +1,8 @@
 import './App.css';
 import {Configuration, OpenAIApi} from "openai"
 import {useState} from "react"
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import TextField from "@material-ui/core/TextField";
-
 
 import logo from './logo.svg';
 import axios from 'axios';
@@ -67,23 +66,19 @@ function App() {
           Summarize your text. 
         </h2>
       </div>
-      <div className = "container">
-        <div className = "text_form">
-          <form>
-            <label>Enter your text</label>
-            <textarea
-              rows={14}
-              cols={80}
-              placeholder = "Enter your text"
-              value = {text}
-              onChange={(event) => setText(event.target.value)}
-            />
-          </form>
-        </div>
-        <div>
+      <TextField
+        id="name-input"
+        name="name"
+        label="Name"
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+      />
+<div>
           <Button variant="contained" onClick = {ButtonSubmit}>
             {loading ? "loading...": "Summarize"}
           </Button>
+          
         </div>
         <div className = "summarized_text">
           <label>Summarized Text</label>
@@ -96,7 +91,6 @@ function App() {
           />
         </div>
       </div>
-    </div>
     
     
   );
