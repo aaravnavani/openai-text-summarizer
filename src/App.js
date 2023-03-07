@@ -58,21 +58,21 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header">
-        <h1 className="header_text">
-          Text <span className="text_active">Summarizer</span>
-          </h1>
-        <h2 className="header_summary">
-          Summarize your text. 
-        </h2>
-      </div>
+      
       <TextField
-        id="name-input"
+        sx={{
+          width: { sm: 200, md: 300 },
+          "& .MuiInputBase-root": {
+            height: 100
+          }
+        }}
+        id="text-input"
         name="name"
-        label="Name"
+        label="Enter the text you want to summarize"
         type="text"
         value={text}
         onChange={(event) => setText(event.target.value)}
+        placeholder="Text"
       />
 <div>
           <Button variant="contained" onClick = {ButtonSubmit}>
