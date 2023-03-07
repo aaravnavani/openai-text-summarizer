@@ -1,13 +1,17 @@
 import './App.css';
 import {Configuration, OpenAIApi} from "openai"
 import {useState} from "react"
+import Button from '@mui/material/Button';
+
 import logo from './logo.svg';
 import axios from 'axios';
 
 function App() {
   const [text, setText] = useState("" );
+  const [query, setQuery] = useState();
   const [summarizedText, setSummarizedText] = useState("")
   const [loading, setLoading] = useState(false)
+
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   const configuration = new Configuration({
@@ -75,9 +79,9 @@ function App() {
           </form>
         </div>
         <div>
-          <button type = "button" onClick = {ButtonSubmit}>
+          <Button variant="contained" onClick = {ButtonSubmit}>
             {loading ? "loading...": "Summarize"}
-          </button>
+          </Button>
         </div>
         <div className = "summarized_text">
           <label>Summarized Text</label>
@@ -91,6 +95,8 @@ function App() {
         </div>
       </div>
     </div>
+    
+    
   );
 }
 
