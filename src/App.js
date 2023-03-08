@@ -19,7 +19,7 @@ function App() {
   const [summarizedText, setSummarizedText] = useState("")
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState('');
-  const [option, setOption] = useState("1")
+  const [option, setOption] = useState("summarize-text")
 
   const [InputTextVisible, setInputTextVisible] = useState(false)
   const [SummarizeTextVisible, setSummarizeTextVisible] = useState(false)
@@ -33,9 +33,9 @@ function App() {
   });
 
   useEffect(() => {
-    option === "1"
-      ? setSummarizeTextVisible(true)
-      : setSummarizeTextVisible(false)
+    option === "summarize-text"
+      ? setInputTextVisible(true)
+      : setInputTextVisible(false)
   })
 
   const openai = new OpenAIApi(configuration)
@@ -83,20 +83,19 @@ function App() {
       <FormControl style={{ marginTop: 100, marginLeft: 100 }}>
         <InputLabel>Tasks</InputLabel>
         <Select value={selected} onChange={selectionChangeHandler}>
-          <MenuItem value={1}>Summarize Text</MenuItem>
-          <MenuItem value={2}>Question & Answer</MenuItem>
+          <MenuItem value={"summarize-text"}>Summarize Text</MenuItem>
+          <MenuItem value={"question-answer"}>Question & Answer</MenuItem>
         </Select>
       <FormHelperText>Select a task</FormHelperText>
     </FormControl>
-    <InputText></InputText>
     <div className = "summarize-button">
         <Button variant="contained" onClick = {ButtonSubmit}>
           {loading ? "loading...": "Summarize"}
         </Button>
     </div>
-    {InputTextVisible && <InputText />}
-    {SummarizeTextVisible && <SummarizedText/>}
-    </div>    
+    {InputTextVisible && <InputText/>}  
+    
+    </div>  
   );
 }
 

@@ -14,7 +14,7 @@ export function SummarizedText() {
     }}
     id="summarized-text"
     name="name"
-    label="Enter the text you want to summarize"
+    label="Summarized Text" 
     type="text"
     value={text}
     onChange={(event) => setText(event.target.value)}
