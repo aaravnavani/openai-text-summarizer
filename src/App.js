@@ -79,12 +79,12 @@ function App() {
         </Select>
       <FormHelperText>Select a task</FormHelperText>
     </FormControl>
+    <InputText></InputText>
     <div className = "summarize-button">
         <Button variant="contained" onClick = {ButtonSubmit}>
           {loading ? "loading...": "Summarize"}
         </Button>
-    </div>
-    <InputText></InputText>
+    </div>  
     </div>    
   );
 }
