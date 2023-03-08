@@ -7,6 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { FormHelperText } from '@mui/material';
 
 import logo from './logo.svg';
 import axios from 'axios';
@@ -17,6 +18,9 @@ function App() {
   const [summarizedText, setSummarizedText] = useState("")
   const [loading, setLoading] = useState(false)
 
+  const [selected, setSelected] = useState('');
+
+  
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   const configuration = new Configuration({
@@ -57,18 +61,23 @@ function App() {
     return `Summarize this ${text}`
   }
 
+  const selectionChangeHandler = (event) => {
+    setSelected(event.target.value);
+  }; 
+
 
 
   return (
     <div className="App">
-      <Select value={2} style={{ marginTop: 100, marginLeft: 100 }}>
-      <MenuItem value={1}>Jan</MenuItem>
-      <MenuItem value={2}>Feb</MenuItem>
-      <MenuItem value={3}>March</MenuItem>
-      <MenuItem value={4}>April</MenuItem>
-      <MenuItem value={5}>May</MenuItem>
-    </Select>
-<div className = "input-text">
+      <FormControl style={{ marginTop: 100, marginLeft: 100 }}>
+      <InputLabel>Tasks</InputLabel>
+      <Select value={selected} onChange={selectionChangeHandler}>
+        <MenuItem value={1}>Question & Answer</MenuItem>
+        <MenuItem value={2}>Summarize Text</MenuItem>
+      </Select>
+      <FormHelperText>Select a task</FormHelperText>
+    </FormControl>
+    <div className = "input-text">
         <TextField
         sx={{
           width: { sm: 200, md: 300 },
