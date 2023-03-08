@@ -72,10 +72,6 @@ function App() {
     return `Summarize this ${text}`
   }
 
-  const selectionChangeHandler = (event) => {
-    setSelected(event.target.value);
-  }; 
-
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   }; 
@@ -96,7 +92,7 @@ function App() {
         <SummarizedText/>
         </>
         )}
-        {selectedOption === "question-answer" && <summarizedText />}
+        {selectedOption === "question-answer" && <SummarizedText />}
         </div>
     <div className = "summarize-button">
       <Button variant="contained" onClick = {ButtonSubmit}>
