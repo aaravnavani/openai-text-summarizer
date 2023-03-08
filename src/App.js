@@ -10,6 +10,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormHelperText } from '@mui/material';
 import axios from 'axios';
 
+
 function App() {
   const [text, setText] = useState("" );
   const [query, setQuery] = useState();
@@ -17,6 +18,9 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState('');
   const [option, setOption] = useState("2")
+
+  const [SummarizeTextVisible, setSummarizeTextVisible] = useState(false)
+  const [QuestionAnswerTextVisible, setQuestionAnswerTextVisible] = useState(false)
 
   
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -75,45 +79,12 @@ function App() {
         </Select>
       <FormHelperText>Select a task</FormHelperText>
     </FormControl>
-    <div className = "input-text">
-        <TextField
-        sx={{
-          width: { sm: 200, md: 300 },
-          "& .MuiInputBase-root": {
-            height: 100
-          }
-        }}
-        id="text-input"
-        name="name"
-        label="Enter the text you want to summarize"
-        type="text"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        placeholder="Text"
-      />
-      </div>
-      <div className = "summarize-button">
+    <div className = "summarize-button">
         <Button variant="contained" onClick = {ButtonSubmit}>
           {loading ? "loading...": "Summarize"}
         </Button>
       </div>
-      <div className = "summarizedext">
-        <TextField
-        sx={{
-          width: { sm: 200, md: 300 },
-          "& .MuiInputBase-root": {
-            height: 100
-          }
-        }}
-        id="text-input"
-        name="name"
-        label="Enter the text you want to summarize"
-        type="text"
-        value={text}
-        onChange={(event) => setText(event.target.value)}
-        placeholder="Text"
-        />
-      </div>
+    
     </div>    
   );
 }
