@@ -61,20 +61,13 @@ function App() {
 
   return (
     <div className="App">
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={text}
-          label="Age"
-          onChange={handleChange}>
-        
-      <MenuItem value={10}>Ten</MenuItem>
-      <MenuItem value={20}>Twenty</MenuItem>
-      <MenuItem value={30}>Thirty</MenuItem>
+      <Select value={2} style={{ marginTop: 100, marginLeft: 100 }}>
+      <MenuItem value={1}>Jan</MenuItem>
+      <MenuItem value={2}>Feb</MenuItem>
+      <MenuItem value={3}>March</MenuItem>
+      <MenuItem value={4}>April</MenuItem>
+      <MenuItem value={5}>May</MenuItem>
     </Select>
-</FormControl>
 <div className = "input-text">
         <TextField
         sx={{
