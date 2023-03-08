@@ -83,7 +83,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Select 
+        <Select style={{ marginTop: 50, marginBottom: 50, width:175 }}
           value={selectedOption}
           onChange={handleOptionChange}
         >
