@@ -6,6 +6,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 import { FormHelperText } from '@mui/material';
 import axios from 'axios';
 import {InputText} from "./components/InputText.js"
@@ -19,7 +20,7 @@ function App() {
   const [summarizedText, setSummarizedText] = useState("")
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState('');
-  const [option, setOption] = useState("summarize-text")
+  const [selectedOption, setSelectedOption] = useState("");
 
   const [InputTextVisible, setInputTextVisible] = useState(false)
   const [SummarizeTextVisible, setSummarizeTextVisible] = useState(false)
@@ -32,13 +33,12 @@ function App() {
     apiKey: process.env.REACT_APP_API_KEY,
   });
 
-  useEffect(() => {
-    option === "summarize-text"
-      ? setInputTextVisible(true)
-      : setInputTextVisible(false)
-  })
+  
 
   const openai = new OpenAIApi(configuration)
+  
+
+
   
   const ButtonSubmit = (event) => {
     var data = JSON.stringify({
@@ -76,24 +76,28 @@ function App() {
     setSelected(event.target.value);
   }; 
 
-
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  }; 
 
   return (
     <div className="App">
-      <FormControl style={{ marginTop: 100, marginLeft: 100 }}>
-        <InputLabel>Tasks</InputLabel>
-        <Select value={selected} onChange={selectionChangeHandler}>
-          <MenuItem value={"summarize-text"}>Summarize Text</MenuItem>
-          <MenuItem value={"question-answer"}>Question & Answer</MenuItem>
+      <div>
+        <Select 
+          value={selectedOption}
+          onChange={handleOptionChange}
+        >
+          <MenuItem value="summarize-text">Summarize Text</MenuItem>
+          <MenuItem value="question-answer">Question and Answer</MenuItem>
         </Select>
-      <FormHelperText>Select a task</FormHelperText>
-    </FormControl>
+        {selectedOption === "summarize-text" && <InputText/>}
+        {selectedOption === "question-answer" && <summarizedText />}
+      </div>
     <div className = "summarize-button">
         <Button variant="contained" onClick = {ButtonSubmit}>
           {loading ? "loading...": "Summarize"}
         </Button>
     </div>
-    {InputTextVisible && <InputText/>}  
     
     </div>  
   );
