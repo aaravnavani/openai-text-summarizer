@@ -1,5 +1,10 @@
-function SummarizedText() {
-<div className = "summarizedText">
+import TextField from '@mui/material/TextField';
+import {useState} from "react"
+
+
+export function SummarizedText() {
+    const [text, setText] = useState("" );
+    <div className = "summarizedText">
     <TextField
     sx={{
         width: { sm: 200, md: 300 },
