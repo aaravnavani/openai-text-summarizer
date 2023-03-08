@@ -1,6 +1,6 @@
 import './App.css';
 import {Configuration, OpenAIApi} from "openai"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import Button from '@mui/material/Button';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,6 +9,8 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormHelperText } from '@mui/material';
 import axios from 'axios';
 import {InputText} from "./components/InputText.js"
+import {SummarizedText} from "./components/SummarizedText.js"
+
 
 
 function App() {
@@ -17,8 +19,9 @@ function App() {
   const [summarizedText, setSummarizedText] = useState("")
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState('');
-  const [option, setOption] = useState("2")
+  const [option, setOption] = useState("1")
 
+  const [InputTextVisible, setInputTextVisible] = useState(false)
   const [SummarizeTextVisible, setSummarizeTextVisible] = useState(false)
   const [QuestionAnswerTextVisible, setQuestionAnswerTextVisible] = useState(false)
 
@@ -28,6 +31,12 @@ function App() {
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_API_KEY,
   });
+
+  useEffect(() => {
+    option === "1"
+      ? setSummarizeTextVisible(true)
+      : setSummarizeTextVisible(false)
+  })
 
   const openai = new OpenAIApi(configuration)
   
@@ -84,7 +93,9 @@ function App() {
         <Button variant="contained" onClick = {ButtonSubmit}>
           {loading ? "loading...": "Summarize"}
         </Button>
-    </div>  
+    </div>
+    {InputTextVisible && <InputText />}
+    {SummarizeTextVisible && <SummarizedText/>}
     </div>    
   );
 }
