@@ -1,5 +1,10 @@
+import TextField from '@mui/material/TextField';
+import {useState} from "react"
+
 export function InputText() {
-<div className = "inputText">
+    const [text, setText] = useState("" );
+    
+    return <div className = "inputText">
     <TextField
     sx={{
         width: { sm: 200, md: 300 },
