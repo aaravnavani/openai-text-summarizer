@@ -8,8 +8,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormHelperText } from '@mui/material';
-
-import logo from './logo.svg';
 import axios from 'axios';
 
 function App() {
@@ -17,8 +15,8 @@ function App() {
   const [query, setQuery] = useState();
   const [summarizedText, setSummarizedText] = useState("")
   const [loading, setLoading] = useState(false)
-
   const [selected, setSelected] = useState('');
+  const [option, setOption] = useState("2")
 
   
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -70,11 +68,11 @@ function App() {
   return (
     <div className="App">
       <FormControl style={{ marginTop: 100, marginLeft: 100 }}>
-      <InputLabel>Tasks</InputLabel>
-      <Select value={selected} onChange={selectionChangeHandler}>
-        <MenuItem value={1}>Question & Answer</MenuItem>
-        <MenuItem value={2}>Summarize Text</MenuItem>
-      </Select>
+        <InputLabel>Tasks</InputLabel>
+        <Select value={selected} onChange={selectionChangeHandler}>
+          <MenuItem value={1}>Summarize Text</MenuItem>
+          <MenuItem value={2}>Question & Answer</MenuItem>
+        </Select>
       <FormHelperText>Select a task</FormHelperText>
     </FormControl>
     <div className = "input-text">
