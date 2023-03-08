@@ -81,21 +81,26 @@ function App() {
   }; 
 
   return (
-    <div className="App">
-      <div>
-        <Select style={{ marginTop: 50, marginBottom: 50, width:175 }}
-          value={selectedOption}
-          onChange={handleOptionChange}
-        >
-          <MenuItem value="summarize-text">Summarize Text</MenuItem>
-          <MenuItem value="question-answer">Question and Answer</MenuItem>
+  <div className="App">
+    <div>
+      <Select style={{ marginTop: 50, marginBottom: 50, width:175 }}
+      value={selectedOption}
+      onChange={handleOptionChange}
+      >
+        <MenuItem value="summarize-text">Summarize Text</MenuItem>
+        <MenuItem value="question-answer">Question and Answer</MenuItem>
         </Select>
-        {selectedOption === "summarize-text" && <InputText/>}
+        {selectedOption === "summarize-text" && (
+        <>
+        <InputText/>
+        <SummarizedText/>
+        </>
+        )}
         {selectedOption === "question-answer" && <summarizedText />}
-      </div>
+        </div>
     <div className = "summarize-button">
-        <Button variant="contained" onClick = {ButtonSubmit}>
-          {loading ? "loading...": "Summarize"}
+      <Button variant="contained" onClick = {ButtonSubmit}>
+        {loading ? "loading...": "Summarize"}
         </Button>
     </div>
     
