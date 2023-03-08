@@ -3,6 +3,10 @@ import {Configuration, OpenAIApi} from "openai"
 import {useState} from "react"
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import logo from './logo.svg';
 import axios from 'axios';
@@ -48,17 +52,30 @@ function App() {
     });
 
   };
-
-
   
  function generatePrompt(text) {
     return `Summarize this ${text}`
   }
-  
+
+
 
   return (
     <div className="App">
-      <div className = "input-text">
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={text}
+          label="Age"
+          onChange={handleChange}>
+        
+      <MenuItem value={10}>Ten</MenuItem>
+      <MenuItem value={20}>Twenty</MenuItem>
+      <MenuItem value={30}>Thirty</MenuItem>
+    </Select>
+</FormControl>
+<div className = "input-text">
         <TextField
         sx={{
           width: { sm: 200, md: 300 },
