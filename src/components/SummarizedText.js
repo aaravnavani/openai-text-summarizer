@@ -2,8 +2,10 @@ import TextField from '@mui/material/TextField';
 import {useState} from "react"
 
 
-export function SummarizedText() {
-    const [text, setText] = useState("" );
+export function SummarizedText({summarizedText}) {
+    //const [text, setText] = useState("" );
+    const [text, setText] = useState(summarizedText || "");
+
     return (
     <div className = "summarizedText">
         <TextField
@@ -17,7 +19,7 @@ export function SummarizedText() {
       name="name"
       label="Summarized Text" 
       type="text"
-      value={text}
+      value={summarizedText}
       onChange={(event) => setText(event.target.value)}
       placeholder="Text"
       />

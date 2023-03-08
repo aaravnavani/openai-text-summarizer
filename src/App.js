@@ -1,6 +1,6 @@
 import './App.css';
 import {Configuration, OpenAIApi} from "openai"
-import {useState, useEffect} from "react"
+import {useState} from "react"
 import Button from '@mui/material/Button';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -89,7 +89,7 @@ function App() {
         {selectedOption === "summarize-text" && (
         <>
         <InputText/>
-        <SummarizedText/>
+        <SummarizedText summarizedText = {summarizedText}/>
         </>
         )}
         {selectedOption === "question-answer" && <SummarizedText />}
@@ -99,6 +99,7 @@ function App() {
         {loading ? "loading...": "Summarize"}
         </Button>
     </div>
+    
     
     </div>  
   );
