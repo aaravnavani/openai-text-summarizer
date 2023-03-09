@@ -9,7 +9,7 @@ export function SummarizedText({summarizedText}) {
     <div className = "summarizedText">
         <TextField
         sx={{
-        width: {md: 500 },
+        width: {md: 500, marginTop: 30 },
         "& .MuiInputBase-root": {
             height: 300
         }
