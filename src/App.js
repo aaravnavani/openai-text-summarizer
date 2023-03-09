@@ -121,20 +121,22 @@ const QuestionAnswerSubmit = (event) => {
           {selectedOption === "summarize-text" && (
           <>
             <InputText label="Enter text to summarize: "/>
-            <SummarizedText summarizedText = {summarizedText}/>
             <Button variant="contained" onClick = {SummarizeButtonSubmit} disabled={loading}>
               {loading ? "loading...": "Summarize"}
             </Button>
+            <SummarizedText summarizedText = {summarizedText}/>
+            
           </>
         )}
           {selectedOption === "question-answer" && (
           <>
             <InputText label="Enter question: " />
             <InputText label="Enter passage: " />
-            <SummarizedText summarizedText={questionAnswerText} />
             <Button variant="contained" onClick = {QuestionAnswerSubmit} disabled={loading}>
               {loading ? "loading...": "Answer"}
             </Button>
+            <SummarizedText summarizedText={questionAnswerText} />
+            
         </>)}
         </div>
     
