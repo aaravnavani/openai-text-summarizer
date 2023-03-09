@@ -7,11 +7,13 @@ export function InputText() {
     return <div className = "inputText">
     <TextField
     sx={{
-        width: { sm: 200, md: 300 },
+        width: { md: 500, marginBottom:100 },
         "& .MuiInputBase-root": {
-            height: 100
+            height: 300
         }
     }}
+    multiline
+    rows={10}
     id="text-input"
     name="name"
     label="Enter the text you want to summarize"
