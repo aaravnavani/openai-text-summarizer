@@ -3,18 +3,19 @@ import {useState} from "react"
 
 
 export function SummarizedText({summarizedText}) {
-    //const [text, setText] = useState("" );
     const [text, setText] = useState(summarizedText || "");
 
     return (
     <div className = "summarizedText">
         <TextField
         sx={{
-        width: { sm: 200, md: 300 },
+        width: {md: 500 },
         "& .MuiInputBase-root": {
-            height: 100
+            height: 300
         }
       }}
+      multiline
+      rows={10}
       id="summarized-text"
       name="name"
       label="Summarized Text" 

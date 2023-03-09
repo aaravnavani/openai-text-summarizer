@@ -7,7 +7,7 @@ export function InputText() {
     return <div className = "inputText">
     <TextField
     sx={{
-        width: { md: 500, marginBottom:100 },
+        width: { md: 500, marginBottom:50},
         "& .MuiInputBase-root": {
             height: 300
         }
