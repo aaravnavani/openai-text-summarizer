@@ -90,11 +90,16 @@ function App() {
         </Select>
         {selectedOption === "summarize-text" && (
         <>
-        <InputText/>
+        <InputText label="Enter text to summarize: "/>
         <SummarizedText summarizedText = {summarizedText}/>
         </>
         )}
-        {selectedOption === "question-answer" && <SummarizedText />}
+        {selectedOption === "question-answer" && (
+        <>
+        <InputText label="Enter question: " />
+        <InputText label="Enter passage: " />
+
+        </>)}
         </div>
     <div className = "summarize-button">
       <Button variant="contained" onClick = {ButtonSubmit} disabled={loading}>
@@ -109,5 +114,3 @@ function App() {
 
 
 export default App;
-
-

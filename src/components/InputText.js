@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import {useState} from "react"
 
-export function InputText() {
+export function InputText({label}) {
     const [text, setText] = useState("" );
     
     return <div className = "inputText">
@@ -16,7 +16,7 @@ export function InputText() {
     rows={10}
     id="text-input"
     name="name"
-    label="Enter the text you want to summarize"
+    label={label}
     type="text"
     value={text}
     onChange={(event) => setText(event.target.value)}
