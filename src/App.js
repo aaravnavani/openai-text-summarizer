@@ -87,7 +87,7 @@ const QuestionAnswerSubmit = (event) => {
 
     axios(config)
     .then(function (response) {
-      setQuestionAnswerText(JSON.stringify(response.data.choices[0]?.text).replace(/\\n/, ''));
+      setQuestionAnswerText(JSON.stringify(response.data.choices[0]?.text).replace(/\\n/g, ''));
       setLoading(false);
     })
     .catch(function (error) {
@@ -109,6 +109,7 @@ const QuestionAnswerSubmit = (event) => {
 
   return (
   <div className="App">
+    <h1>OpenAI Text Summarizer & Question/Answer</h1>
     <div>
       <Select style={{ marginTop: 50, marginBottom: 50, width:175 }}
       value={selectedOption}
