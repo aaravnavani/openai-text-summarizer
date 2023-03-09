@@ -44,7 +44,7 @@ function App() {
     setLoading(true);
     var data = JSON.stringify({
       "model": "text-davinci-003",
-      "prompt": generatePrompt(text),
+      "prompt": generateSummarizePrompt(text),
       "max_tokens": 1024,
       "temperature": 0
     });
@@ -70,7 +70,7 @@ function App() {
     });
 };
   
- function generatePrompt(text) {
+ function generateSummarizePrompt(text) {
     return `Summarize this ${text}`
   }
 
@@ -88,24 +88,24 @@ function App() {
         <MenuItem value="summarize-text">Summarize Text</MenuItem>
         <MenuItem value="question-answer">Question and Answer</MenuItem>
         </Select>
-        {selectedOption === "summarize-text" && (
-        <>
-        <InputText label="Enter text to summarize: "/>
-        <SummarizedText summarizedText = {summarizedText}/>
-        </>
+          {selectedOption === "summarize-text" && (
+          <>
+            <InputText label="Enter text to summarize: "/>
+            <SummarizedText summarizedText = {summarizedText}/>
+            <Button variant="contained" onClick = {ButtonSubmit} disabled={loading}>
+              {loading ? "loading...": "Summarize"}
+            </Button>
+          </>
         )}
-        {selectedOption === "question-answer" && (
-        <>
-        <InputText label="Enter question: " />
-        <InputText label="Enter passage: " />
-
+          {selectedOption === "question-answer" && (
+          <>
+            <InputText label="Enter question: " />
+            <InputText label="Enter passage: " />
+            <Button variant="contained" onClick = {ButtonSubmit} disabled={loading}>
+              {loading ? "loading...": "Answer"}
+            </Button>
         </>)}
         </div>
-    <div className = "summarize-button">
-      <Button variant="contained" onClick = {ButtonSubmit} disabled={loading}>
-        {loading ? "loading...": "Summarize"}
-        </Button>
-    </div>
     
     
     </div>  
