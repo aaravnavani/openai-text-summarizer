@@ -41,6 +41,7 @@ function App() {
 
   
   const ButtonSubmit = (event) => {
+    setLoading(true);
     var data = JSON.stringify({
       "model": "text-davinci-003",
       "prompt": generatePrompt(text),
@@ -61,12 +62,13 @@ function App() {
     axios(config)
     .then(function (response) {
       setSummarizedText(JSON.stringify(response.data.choices[0]?.text));
+      setLoading(false);
     })
     .catch(function (error) {
       console.log(error);
+      setLoading(false); 
     });
-
-  };
+};
   
  function generatePrompt(text) {
     return `Summarize this ${text}`
@@ -95,7 +97,7 @@ function App() {
         {selectedOption === "question-answer" && <SummarizedText />}
         </div>
     <div className = "summarize-button">
-      <Button variant="contained" onClick = {ButtonSubmit}>
+      <Button variant="contained" onClick = {ButtonSubmit} disabled={loading}>
         {loading ? "loading...": "Summarize"}
         </Button>
     </div>
