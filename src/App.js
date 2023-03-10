@@ -2,9 +2,7 @@ import './App.css';
 import {Configuration, OpenAIApi} from "openai"
 import {useState} from "react"
 import Button from '@mui/material/Button';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import { FormHelperText } from '@mui/material';
