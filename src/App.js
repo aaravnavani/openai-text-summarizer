@@ -34,8 +34,7 @@ function App() {
   const openai = new OpenAIApi(configuration)
   
   //handleSummarizeButtonSubmit
-  const SummarizeButtonSubmit = (event) => {
-    console.log("Prompt:", generateSummarizePrompt(text))
+  const handleSummarizeButtonSubmit = (event) => {
     setLoading(true);
     var data = JSON.stringify({
       "model": "text-davinci-003",
@@ -67,7 +66,7 @@ function App() {
   
   
 };
-const QuestionAnswerSubmit = (event) => {
+const handleQuestionAnswerSubmit = (event) => {
   setLoading(true);
     var data = JSON.stringify({
       "model": "text-davinci-003",
@@ -125,7 +124,7 @@ const QuestionAnswerSubmit = (event) => {
           {selectedOption === "summarize-text" && (
           <>
             <InputText label="Enter text to summarize: " onChange={handleTextChange} value={text}/>
-            <Button variant="contained" onClick = {SummarizeButtonSubmit} disabled={loading}>
+            <Button variant="contained" onClick = {handleSummarizeButtonSubmit} disabled={loading}>
               {loading ? "loading...": "Summarize"}
             </Button>
             <SummarizedText summarizedText = {summarizedText}/>
@@ -136,7 +135,7 @@ const QuestionAnswerSubmit = (event) => {
           <>
             <InputText label="Enter question: " />
             <InputText label="Enter passage: " />
-            <Button variant="contained" onClick={QuestionAnswerSubmit} disabled={loading}>
+            <Button variant="contained" onClick={handleQuestionAnswerSubmit} disabled={loading}>
               {loading ? "loading...": "Answer"}
             </Button>
             <SummarizedText summarizedText={questionAnswerText} />
