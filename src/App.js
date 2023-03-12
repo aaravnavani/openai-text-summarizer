@@ -33,7 +33,9 @@ function App() {
 
   const openai = new OpenAIApi(configuration)
   
+  //handleSummarizeButtonSubmit
   const SummarizeButtonSubmit = (event) => {
+    console.log("Prompt:", generateSummarizePrompt(text))
     setLoading(true);
     var data = JSON.stringify({
       "model": "text-davinci-003",
@@ -41,6 +43,7 @@ function App() {
       "max_tokens": 1024,
       "temperature": 0
     });
+
     
     var config = {
       method: 'post',
@@ -54,7 +57,8 @@ function App() {
 
     axios(config)
     .then(function (response) {
-      setSummarizedText(JSON.stringify(response.data.choices[0]?.text).replace(/\\n/g, ''));
+      setSummarizedText(JSON.stringify(response.data.choices[0]?.text).replace(/\\n/g, ''))
+      console.log(JSON.stringify(response.data.choices[0]?.text));
       setLoading(false);
     })
     .catch(function (error) {
@@ -95,15 +99,18 @@ const QuestionAnswerSubmit = (event) => {
 }
   
  function generateSummarizePrompt(text) {
-    return `Summarize this ${text}`
+    return `Summarize this: ${text}`
   }
   function generateQuestionAnswerPrompt(question, passage) {
-    return `Answer this question: ${question} from this passage: ${passage}`
+    return `Answer this question: "${question}" from this passage: "${passage}"`
   }
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   }; 
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+  };
 
   return (
   <div className="App">
@@ -118,7 +125,7 @@ const QuestionAnswerSubmit = (event) => {
         </Select>
           {selectedOption === "summarize-text" && (
           <>
-            <InputText label="Enter text to summarize: "/>
+            <InputText label="Enter text to summarize: " onChange={handleTextChange} value={text}/>
             <Button variant="contained" onClick = {SummarizeButtonSubmit} disabled={loading}>
               {loading ? "loading...": "Summarize"}
             </Button>
@@ -130,7 +137,7 @@ const QuestionAnswerSubmit = (event) => {
           <>
             <InputText label="Enter question: " />
             <InputText label="Enter passage: " />
-            <Button variant="contained" onClick = {QuestionAnswerSubmit} disabled={loading}>
+            <Button variant="contained" onClick={QuestionAnswerSubmit} disabled={loading}>
               {loading ? "loading...": "Answer"}
             </Button>
             <SummarizedText summarizedText={questionAnswerText} />

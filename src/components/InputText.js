@@ -1,26 +1,23 @@
-import TextField from '@mui/material/TextField';
-import {useState} from "react"
+import { TextField } from '@mui/material';
 
-export function InputText({label}) {
-    const [text, setText] = useState("" );
-    
-    return <div className = "inputText">
-    <TextField
-    sx={{
+export const InputText = ({ label, onChange }) => {
+  return (
+    <div className = "input-text">
+      <TextField
+      sx={{
         width: { md: 500, marginBottom:50},
         "& .MuiInputBase-root": {
             height: 300
         }
     }}
+    label={label}
     multiline
     rows={10}
-    id="text-input"
-    name="name"
-    label={label}
-    type="text"
-    value={text}
-    onChange={(event) => setText(event.target.value)}
+    fullWidth
+    variant="outlined"
+    onChange={onChange} // pass the onChange prop to the TextField component
     placeholder="Text"
     />
     </div>
-}
+  );
+};
