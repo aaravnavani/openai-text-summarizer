@@ -58,7 +58,6 @@ function App() {
     axios(config)
     .then(function (response) {
       setSummarizedText(JSON.stringify(response.data.choices[0]?.text).replace(/\\n/g, ''))
-      console.log(JSON.stringify(response.data.choices[0]?.text));
       setLoading(false);
     })
     .catch(function (error) {
