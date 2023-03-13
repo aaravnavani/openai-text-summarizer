@@ -5,12 +5,9 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-import { FormHelperText } from '@mui/material';
 import axios from 'axios';
 import {InputText} from "./components/InputText.js"
 import {SummarizedText} from "./components/SummarizedText.js"
-
-
 
 function App() {
   const [text, setText] = useState("" );
@@ -134,7 +131,7 @@ const handleQuestionAnswerSubmit = (event) => {
           {selectedOption === "question-answer" && (
           <>
             <InputText label="Enter question: " />
-            <InputText label="Enter passage: " />
+            <InputText label="Enter passage: " onChange= {handleTextChange} value={text}/>
             <Button variant="contained" onClick={handleQuestionAnswerSubmit} disabled={loading}>
               {loading ? "loading...": "Answer"}
             </Button>
