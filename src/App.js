@@ -14,14 +14,12 @@ function App() {
   const [query, setQuery] = useState();
   const [summarizedText, setSummarizedText] = useState("")
   const [questionAnswerText, setQuestionAnswerText] = useState("")
+  const [question, setQuestion] = useState("")
+  const [passage, setPassage] = useState("")
 
   const [loading, setLoading] = useState(false)
-  const [selected, setSelected] = useState('');
   const [selectedOption, setSelectedOption] = useState("");
 
-  const [InputTextVisible, setInputTextVisible] = useState(false)
-  const [SummarizeTextVisible, setSummarizeTextVisible] = useState(false)
-  const [QuestionAnswerTextVisible, setQuestionAnswerTextVisible] = useState(false)
 
   const API_KEY = process.env.REACT_APP_API_KEY;
   const configuration = new Configuration({
@@ -30,7 +28,6 @@ function App() {
 
   const openai = new OpenAIApi(configuration)
   
-  //handleSummarizeButtonSubmit
   const handleSummarizeButtonSubmit = (event) => {
     setLoading(true);
     var data = JSON.stringify({
@@ -60,14 +57,12 @@ function App() {
       console.log(error);
       setLoading(false); 
     });
-  
-  
 };
 const handleQuestionAnswerSubmit = (event) => {
   setLoading(true);
     var data = JSON.stringify({
       "model": "text-davinci-003",
-      "prompt": generateQuestionAnswerPrompt(text),
+      "prompt": generateQuestionAnswerPrompt(question, passage),
       "max_tokens": 1024,
       "temperature": 0
     });
@@ -91,9 +86,8 @@ const handleQuestionAnswerSubmit = (event) => {
       console.log(error);
       setLoading(false); 
     }); 
-}
-  
- function generateSummarizePrompt(text) {
+  }
+  function generateSummarizePrompt(text) {
     return `Summarize this: ${text}`
   }
   function generateQuestionAnswerPrompt(question, passage) {
@@ -106,6 +100,12 @@ const handleQuestionAnswerSubmit = (event) => {
   const handleTextChange = (event) => {
     setText(event.target.value);
   };
+  const handleQuestionChange = (event) => {
+    setQuestion(event.target.value);
+  }
+  const handlePassageChange = (event) => {
+    setPassage(event.target.value);
+  }
 
   return (
   <div className="App">
@@ -130,8 +130,8 @@ const handleQuestionAnswerSubmit = (event) => {
         )}
           {selectedOption === "question-answer" && (
           <>
-            <InputText label="Enter question: " />
-            <InputText label="Enter passage: " onChange= {handleTextChange} value={text}/>
+            <InputText label="Enter question: " onChange={handleQuestionChange} value={question}/>
+            <InputText label="Enter passage: " onChange= {handlePassageChange} value={passage}/>
             <Button variant="contained" onClick={handleQuestionAnswerSubmit} disabled={loading}>
               {loading ? "loading...": "Answer"}
             </Button>
