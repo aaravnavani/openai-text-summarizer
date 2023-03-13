@@ -124,7 +124,7 @@ const handleQuestionAnswerSubmit = (event) => {
             <Button variant="contained" onClick = {handleSummarizeButtonSubmit} disabled={loading}>
               {loading ? "loading...": "Summarize"}
             </Button>
-            <SummarizedText summarizedText = {summarizedText}/>
+            <SummarizedText summarizedText = {summarizedText} label="Summarized Text"/>
             
           </>
         )}
@@ -135,7 +135,7 @@ const handleQuestionAnswerSubmit = (event) => {
             <Button variant="contained" onClick={handleQuestionAnswerSubmit} disabled={loading}>
               {loading ? "loading...": "Answer"}
             </Button>
-            <SummarizedText summarizedText={questionAnswerText} />
+            <SummarizedText summarizedText={questionAnswerText} label="Answer" />
             
         </>)}
         </div>
